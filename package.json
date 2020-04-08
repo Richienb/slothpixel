@@ -1,8 +1,8 @@
 {
-	"name": "the-module",
+	"name": "slothpixel",
 	"version": "0.0.0",
-	"description": "My awesome module.",
-	"repository": "https://github.com/Richienb/the-module.git",
+	"description": "A simplified interface for the Slothpixel API.",
+	"repository": "https://github.com/Richienb/slothpixel.git",
 	"author": "Richie Bendall <richiebendall@gmail.com>",
 	"license": "MIT",
 	"main": "index.js",
@@ -17,8 +17,18 @@
 		"lint": "xo",
 		"test": "yarn lint && ava"
 	},
-	"keywords": [],
-	"dependencies": {},
+	"keywords": [
+		"hypixel",
+		"slothpixel",
+		"minecraft",
+		"api",
+		"wrapper",
+		"request"
+	],
+	"dependencies": {
+		"ky": "^0.19.0",
+		"ky-universal": "^0.5.0"
+	},
 	"devDependencies": {
 		"ava": "^3.5.2",
 		"eslint-config-richienb": "^0.4.2",

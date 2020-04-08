@@ -1,41 +1,44 @@
-# the-module [![Travis CI Build Status](https://img.shields.io/travis/com/Richienb/the-module/master.svg?style=for-the-badge)](https://travis-ci.com/Richienb/the-module)
+# slothpixel [![Travis CI Build Status](https://img.shields.io/travis/com/Richienb/slothpixel/master.svg?style=for-the-badge)](https://travis-ci.com/Richienb/slothpixel)
 
-My awesome module.
+A simplified interface for the Slothpixel API.
 
-[![NPM Badge](https://nodei.co/npm/the-module.png)](https://npmjs.com/package/the-module)
+[![NPM Badge](https://nodei.co/npm/slothpixel.png)](https://npmjs.com/package/slothpixel)
 
 ## Install
 
 ```sh
-npm install the-module
+npm install slothpixel
 ```
 
 ## Usage
 
 ```js
-const theModule = require("the-module");
+const slothpixel = require("slothpixel");
 
-theModule("unicorns");
-//=> 'unicorns & rainbows'
+(async () => {
+	const { uuid } = await slothpixel("players/Richienb");
+
+	console.log(uuid);
+	//=> "56da43a4088d4a7682b6dd431535015e"
+})();
 ```
 
 ## API
 
-### theModule(input, options?)
+### slothpixel(endpoint, options?)
 
-#### input
+#### endpoint
 
 Type: `string`
 
-Lorem ipsum.
+The [API endpoint](https://docs.slothpixel.me) to call.
 
 #### options
 
 Type: `object`
 
-##### postfix
+The options to pass to the API.
 
-Type: `string`\
-Default: `rainbows`
+### slothpixel.SlothpixelError
 
-Lorem ipsum.
+Exposed for instanceof checks. This type of error is thrown when the API returns an error.
