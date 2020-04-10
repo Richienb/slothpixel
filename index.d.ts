@@ -22,7 +22,7 @@ declare const slothpixel: {
 	})();
 	```
 	*/
-	<ReturnType = object | object[]>(endpoint: string, options?: Record<string, string, number, boolean>): Promise<ReturnType>
+	<ReturnType = object | object[]>(endpoint: string, options?: Record<string, string | number | boolean>): Promise<ReturnType>
 }
 
 export = slothpixel
