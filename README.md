@@ -39,6 +39,35 @@ Type: `object`
 
 The options to pass to the API.
 
+### slothpixel.graphql(data)
+
+Send a request to the Slothpixel Graphql API.
+
+#### data
+
+Type: `object`
+
+The Graphql data to send. See https://graphql.org/learn/serving-over-http/#post-request.
+
+```js
+const slothpixel = require("slothpixel");
+
+(async () => {
+	const query = `{
+		players {
+			player(player_name: "Richienb") {
+				uuid
+			}
+		}
+	}`;
+
+	const data = await slothpixel.graphql({ query });
+
+	console.log(data.players.player.uuid)
+	//=> "56da43a4088d4a7682b6dd431535015e"
+})();
+```
+
 ### slothpixel.SlothpixelError
 
 Exposed for instanceof checks. This type of error is thrown when the API returns an error.

@@ -1,6 +1,9 @@
 "use strict"
 
-const ky = require("ky-universal")
+const AggregateError = require("aggregate-error")
+const ky = require("ky-universal").extend({
+	throwHttpErrors: false
+})
 
 class SlothpixelError extends Error {
 	constructor(message = "", ...args) {
@@ -16,8 +19,7 @@ module.exports = async (endpoint, options) => {
 
 	const result = await ky(endpoint, {
 		prefixUrl: "https://api.slothpixel.me/api/",
-		searchParams: options,
-		throwHttpErrors: false
+		searchParams: options
 	})
 	const data = await result.json()
 
@@ -26,6 +28,23 @@ module.exports = async (endpoint, options) => {
 	}
 
 	return data
+}
+
+module.exports.graphql = async data => {
+	const result = await ky.post("https://api.slothpixel.me/api/graphql", {
+		json: data
+	})
+	const { data: data_, errors } = await result.json()
+
+	if (errors) {
+		if (errors.length === 1) {
+			throw new SlothpixelError(errors[0].message)
+		}
+
+		throw new AggregateError(errors.map(({ message }) => new SlothpixelError(message)))
+	}
+
+	return data_
 }
 
 module.exports.SlothpixelError = SlothpixelError
