@@ -21,6 +21,11 @@ module.exports = async (endpoint, options) => {
 		prefixUrl: "https://api.slothpixel.me/api/",
 		searchParams: options
 	})
+
+	if (!result) {
+		throw new SlothpixelError("Slothpixel returned an empty response.")
+	}
+
 	const data = await result.json()
 
 	if (data.error) {
@@ -34,6 +39,11 @@ module.exports.graphql = async data => {
 	const result = await ky.post("https://api.slothpixel.me/api/graphql", {
 		json: data
 	})
+
+	if (!result) {
+		throw new SlothpixelError("Slothpixel returned an empty response.")
+	}
+
 	const { data: data_, errors } = await result.json()
 
 	if (errors) {
