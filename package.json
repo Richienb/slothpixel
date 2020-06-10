@@ -1,6 +1,6 @@
 {
 	"name": "slothpixel",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "A simplified interface for the Slothpixel API.",
 	"repository": "https://github.com/Richienb/slothpixel.git",
 	"author": "Richie Bendall <richiebendall@gmail.com>",
